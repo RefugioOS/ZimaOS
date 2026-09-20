@@ -1,0 +1,69 @@
+name: seedforge
+
+services:
+  seedforge:
+    image: ghcr.io/refugioos/seedforge:0.1.1-refugioos.1
+    container_name: seedforge
+    ports:
+      - target: 8000
+        published: "8000"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/seedforge/data
+        target: /app/data
+    environment:
+      DB_PATH: /app/data/seedforge.db
+      SF_USER: admin
+      SF_PASS: change-this-password
+      SF_SECRET: change-this-secret-before-use
+      SF_DATA_KEY: change-this-data-key-before-use
+      SF_COOKIE_MAX_AGE: "28800"
+      SF_LOGIN_MAX_ATTEMPTS: "5"
+      SF_LOGIN_LOCK_SECONDS: "300"
+      SF_TRUSTED_PROXY: "false"
+      SF_APP_NAME: SeedForge
+      SF_APP_VENDOR: RefugioOS
+      SF_APP_TAGLINE: Tu seed no sale de tu refugio.
+      SF_AUTHOR: RefugioOS
+      SF_COPYRIGHT: 2026 RefugioOS. Todos los derechos reservados.
+      SF_DONATION_TEXT: Ayuda a mantener los recursos de RefugioOS
+      SF_DONATION_URL: ""
+      SF_DONATION_BTC: ""
+      SF_DONATION_LN: ""
+    healthcheck:
+      test: ["CMD-SHELL", "python - <<'PY'\nimport urllib.request\nurllib.request.urlopen('http://127.0.0.1:8000/login', timeout=5)\nPY"]
+      interval: 30s
+      timeout: 8s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: seedforge
+  author: RefugioOS
+  category: Utilities
+  description:
+    en_us: Self-hosted BIP39 seed recovery assistant with external API keys, private/local nodes, and prioritized BTC/ETH sources.
+    es_es: Asistente self-hosted para recuperacion legitima de frases BIP39 con API keys externas, nodos locales/privados y fuentes BTC/ETH priorizadas.
+  developer: RefugioOS
+  icon: icon.png
+  index: /
+  port_map: "8000"
+  scheme: http
+  tagline:
+    en_us: Local BIP39 seed recovery
+    es_es: Recuperacion local de frases BIP39
+  title:
+    en_us: SeedForge
+    es_es: SeedForge
+  hostname: ""
+  screenshot_link: []
+  tips:
+    before_install:
+      en_us: Change SF_PASS, SF_SECRET and SF_DATA_KEY before using real seed data. Configure local nodes or external API keys in Settings.
+      es_es: Cambia SF_PASS, SF_SECRET y SF_DATA_KEY antes de usar datos reales. Configura nodos locales o API keys externas desde Settings.
+  store_app_id: seedforge
