@@ -17,7 +17,7 @@ services:
     ports:
       - 8232:8232/tcp
       - 8233:8233/tcp
-      - 8080:8080/tcp
+      - 48232:48232/tcp
     volumes:
       - zebra_data:/data
     healthcheck:
@@ -42,7 +42,7 @@ x-casaos:
     en_us: Pure port of the Zcash Foundation's Zebra node. Official SHA256-verified binaries, no forks or patches.
   category: Finance
   index: /
-  port_map: "8080:8080"
+  port_map: "48232:48232"
 
 volumes:
   zebra_data:
