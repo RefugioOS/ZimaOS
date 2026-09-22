@@ -1,0 +1,39 @@
+services:
+  password-pusher:
+    image: ghcr.io/refugioos/password-pusher:2.14.0-refugioos.1
+    restart: unless-stopped
+    environment:
+      PORT: "5100"
+    ports:
+      - "${PUSHER_PORT:-3481}:5100"
+    volumes:
+      - password_pusher_data:/opt/PasswordPusher/storage
+
+volumes:
+  password_pusher_data:
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: password-pusher
+  author: RefugioOS
+  category: Security
+  description:
+    en_us: Comparte contraseñas, texto y URLs con expiración por vistas o por tiempo.
+    es_es: Comparte contraseñas, texto y URLs con expiración por vistas o por tiempo.
+  developer: RefugioOS
+  icon: icon.png
+  index: /
+  port_map: "3481"
+  scheme: http
+  tagline:
+    en_us: Comparte contraseñas y secretos que se autodestruyen
+    es_es: Comparte contraseñas y secretos que se autodestruyen
+  title:
+    en_us: Password Pusher
+    es_es: Password Pusher
+  hostname: ""
+  screenshot_link: []
+  store_app_id: password-pusher
+

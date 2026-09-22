@@ -1,0 +1,40 @@
+services:
+  burn-after-reading:
+    image: ghcr.io/refugioos/burn-after-reading:0.1.6-refugioos.2
+    restart: unless-stopped
+    environment:
+      PORT: "80"
+      BAR_PASSWORD: "${BAR_PASSWORD:-change-this-password}"
+    ports:
+      - "${BAR_PORT:-3480}:80"
+    volumes:
+      - burn_after_reading_data:/data
+
+volumes:
+  burn_after_reading_data:
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: burn-after-reading
+  author: RefugioOS
+  category: Security
+  description:
+    en_us: Pastebin efímero para compartir mensajes y archivos con enlaces de un solo uso.
+    es_es: Pastebin efímero para compartir mensajes y archivos con enlaces de un solo uso.
+  developer: RefugioOS
+  icon: icon.png
+  index: /
+  port_map: "3480"
+  scheme: http
+  tagline:
+    en_us: Comparte mensajes y archivos que desaparecen después de abrirse
+    es_es: Comparte mensajes y archivos que desaparecen después de abrirse
+  title:
+    en_us: Burn After Reading
+    es_es: Burn After Reading
+  hostname: ""
+  screenshot_link: []
+  store_app_id: burn-after-reading
+

@@ -1,7 +1,19 @@
 services:
   zebra:
-    image: ghcr.io/refugioos/zebra:6.3.0-refugioos.1
+    image: ghcr.io/refugioos/zebra:6.3.0-refugioos.2
     restart: unless-stopped
+    # Tope de RAM del contenedor: 4 GB por defecto (minimo oficial de Zebra,
+    # suficiente para un nodo de baja demanda: solo sync). Deja el resto del
+    # nodo libre. Si la pagina muestra reinicios por RAM, sube el tope:
+    # ZEBRA_MEM_LIMIT=8g (o 12g si la maquina solo corre Zebra).
+    mem_limit: ${ZEBRA_MEM_LIMIT:-4g}
+    mem_reservation: ${ZEBRA_MEM_RESERVATION:-2g}
+    # Rotacion de logs del contenedor (el sync escribe mucho en stdout).
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "3"
     ports:
       - 8232:8232/tcp
       - 8233:8233/tcp

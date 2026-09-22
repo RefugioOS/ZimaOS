@@ -1,0 +1,37 @@
+services:
+  2fauth:
+    image: ghcr.io/refugioos/2fauth:8.0.2-refugioos.1
+    restart: unless-stopped
+    ports:
+      - "${TFA_PORT:-3482}:8000"
+    volumes:
+      - tfauth_data:/2fauth
+
+volumes:
+  tfauth_data:
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: 2fauth
+  author: RefugioOS
+  category: Security
+  description:
+    en_us: "Gestor web de doble factor: TOTP/HOTP, WebAuthn y generacion de codigos."
+    es_es: "Gestor web de doble factor: TOTP/HOTP, WebAuthn y generacion de codigos."
+  developer: RefugioOS
+  icon: icon.png
+  index: /
+  port_map: "3482"
+  scheme: http
+  tagline:
+    en_us: Gestiona tus códigos 2FA y genera OTP desde tu servidor
+    es_es: Gestiona tus códigos 2FA y genera OTP desde tu servidor
+  title:
+    en_us: 2FAuth
+    es_es: 2FAuth
+  hostname: ""
+  screenshot_link: []
+  store_app_id: 2fauth
+
