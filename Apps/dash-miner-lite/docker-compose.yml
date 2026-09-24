@@ -1,0 +1,9 @@
+services:
+  app:
+    # network_mode: host es necesario porque el bridge integrado usa
+    # os.networkInterfaces() para detectar la subred real del servidor y
+    # escanear/controlar mineros en tu LAN. Sin privileged ni NET_ADMIN:
+    # solo TCP connects salientes.
+    image: ghcr.io/refugioos/dash-miner-lite:0.1.0-beta.1
+    network_mode: host
+    restart: on-failure
