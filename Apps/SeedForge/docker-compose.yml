@@ -2,7 +2,7 @@ name: seedforge
 
 services:
   seedforge:
-    image: ghcr.io/refugioos/seedforge-v2-5:2.5.0-refugioos.1
+    image: ghcr.io/refugioos/seedforge-lite:2.5.0-refugioos.1
     container_name: seedforge
     ports:
       - target: 8000
@@ -58,8 +58,8 @@ x-casaos:
     en_us: Local BIP39 seed recovery
     es_es: Recuperacion local de frases BIP39
   title:
-    en_us: SeedForge
-    es_es: SeedForge
+    en_us: SeedForge Lite
+    es_es: SeedForge Lite
   hostname: ""
   screenshot_link: []
   tips:
