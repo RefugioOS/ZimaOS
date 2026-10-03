@@ -1,7 +1,7 @@
 # Zebra (Zcash Node) - ZimaOS
 
 <!-- PORT-VERSION-BEGIN -->
-Version: `6.3.0-refugioos.2` - upstream `v6.3.0` (commit `f5c5277fe41eba9c74f37098738f93f35dd70d60`)
+Version: `6.4.2-refugioos.1` - upstream `v6.4.2` (commit `e3eef2f37c35127ad1769f19a1ebc7eaa5d5d291`)
 <!-- PORT-VERSION-END -->
 
 Port PURO del nodo Zcash [Zebra (zebrad)](https://github.com/ZcashFoundation/zebra)

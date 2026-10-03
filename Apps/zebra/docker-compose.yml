@@ -1,6 +1,6 @@
 services:
   zebra:
-    image: ghcr.io/refugioos/zebra:6.3.0-refugioos.2
+    image: ghcr.io/refugioos/zebra:6.4.2-refugioos.1
     restart: unless-stopped
     # Tope de RAM del contenedor: 4 GB por defecto (minimo oficial de Zebra,
     # suficiente para un nodo de baja demanda: solo sync). Deja el resto del
